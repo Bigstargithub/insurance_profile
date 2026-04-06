@@ -14,8 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3001")
+    (() => {
+      const url = process.env.NEXT_PUBLIC_SITE_URL;
+      if (url) return url.startsWith('http') ? url : `https://${url}`;
+      if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+      return 'http://localhost:3001';
+    })()
   ),
   title: "실비·암·운전자보험까지 한 번에 상담받는 개인 보험 상담",
   description:
