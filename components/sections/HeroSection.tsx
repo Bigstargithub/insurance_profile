@@ -52,7 +52,7 @@ export default function HeroSection() {
             </div>
 
             {/* 간단 통계 */}
-            <div className="mt-10 flex gap-8 justify-center md:justify-start text-center">
+            <div className="mt-10 flex gap-4 justify-center md:justify-start text-center whitespace-nowrap">
               <div>
                 <div className="text-2xl font-bold text-white">14+</div>
                 <div className="text-blue-300 text-sm">보험 종류</div>

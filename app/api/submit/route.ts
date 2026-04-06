@@ -1,6 +1,7 @@
 // app/api/submit/route.ts
-// 서버 사이드 프록시: 클라이언트 → 이 API → Google Apps Script
-// no-cors 대신 서버에서 직접 호출해 성공/실패 여부를 정확히 감지
+// Google Apps Script는 POST 요청 시 302 리다이렉트를 내려보내는 경우가 있음
+// redirect: 'follow' 상태에서 POST → GET 으로 바뀌며 doPost가 실행되지 않는 문제 해결
+// URLSearchParams 방식으로 전송해 GAS가 안정적으로 수신하도록 처리
 
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -8,24 +9,28 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    // 서버 전용 환경변수 (브라우저에 노출되지 않음)
     const url = process.env.GOOGLE_SHEETS_URL;
 
     if (!url) {
-      // 개발 환경: URL 미설정 시 데이터만 로깅 후 성공 처리
       console.log('[개발] 상담 신청 데이터:', data);
       return NextResponse.json({ ok: true });
     }
 
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+    // GAS는 application/x-www-form-urlencoded로 받는 게 가장 안정적
+    const params = new URLSearchParams();
+    Object.entries(data).forEach(([key, value]) => {
+      params.append(key, String(value));
     });
 
-    if (!response.ok) {
-      throw new Error(`Google Sheets 응답 오류: ${response.status}`);
-    }
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString(),
+      redirect: 'follow',
+    });
+
+    // GAS는 리다이렉트 후에도 200을 반환하므로 상태코드보다 응답 존재 여부로 판단
+    console.log('[성공] GAS 응답 상태:', response.status);
 
     return NextResponse.json({ ok: true });
   } catch (error) {

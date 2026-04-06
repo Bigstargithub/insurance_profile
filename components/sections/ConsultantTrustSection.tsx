@@ -40,7 +40,7 @@ export default function ConsultantTrustSection() {
 
           {/* 소개 텍스트 */}
           <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
               고객 입장에서 먼저 생각하는<br />
               <span className="text-blue-600">보험 상담사입니다</span>
             </h2>

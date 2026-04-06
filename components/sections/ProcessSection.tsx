@@ -29,7 +29,7 @@ export default function ProcessSection() {
       <div className="max-w-4xl mx-auto">
         {/* 섹션 헤더 */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 whitespace-nowrap">
             상담 신청, 3단계면 충분합니다
           </h2>
           <p className="text-lg text-gray-500">

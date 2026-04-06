@@ -99,7 +99,7 @@ export default function CTASection() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             지금 바로 상담 신청하세요
           </h2>
-          <p className="text-blue-200 text-lg">
+          <p className="text-blue-200 text-base">
             간단한 정보만 입력하시면 빠르게 연락드립니다
           </p>
         </div>
@@ -118,7 +118,7 @@ export default function CTASection() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-black"
                 placeholder="홍길동"
               />
             </div>
@@ -135,7 +135,7 @@ export default function CTASection() {
                 maxLength={6}
                 value={formData.birthdate}
                 onChange={(e) => setFormData({ ...formData, birthdate: e.target.value.replace(/\D/g, '') })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-black"
                 placeholder="YYMMDD (예: 900101)"
               />
               <p className="text-xs text-gray-400 mt-1.5">
@@ -154,7 +154,7 @@ export default function CTASection() {
                 required
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-black"
                 placeholder="010-1234-5678"
               />
             </div>
@@ -170,7 +170,7 @@ export default function CTASection() {
                 required
                 value={formData.region}
                 onChange={(e) => setFormData({ ...formData, region: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-black"
                 placeholder="예: 서울 강남구"
               />
             </div>
